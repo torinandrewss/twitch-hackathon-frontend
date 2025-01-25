@@ -1,34 +1,10 @@
 import React, { useState } from 'react';
 import dataParse from '../../utils/JSONhelpers';
 
-const TwitchApiClient = (clientId) => {
-  const request = async (url, content) => {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Client-ID': clientId,
-        'Content-Type': 'application/json',
-      },
-      body: content,
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
-  };
-
-  return { request };
-};
-
 const DownloadChatLog = () => {
   const [videoId, setVideoId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const clientId = 'kd1unb4b3q4t58fwlpcbzcbnm76a8fp'; // Replace with your actual Client ID
-  const apiClient = TwitchApiClient(clientId);
 
   const downloadChatLog = async () => {
     setLoading(true);
@@ -58,7 +34,7 @@ const DownloadChatLog = () => {
           nextCursor ? `"cursor":"${nextCursor}"` : '"contentOffsetSeconds":0',
         ];
 
-        const response = await apiClient.request(
+        const response = await getChat(
           'https://gql.twitch.tv/gql',
           baseQuery.replace(
             '"variables":{}',

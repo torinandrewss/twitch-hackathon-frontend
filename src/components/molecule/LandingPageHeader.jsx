@@ -10,5 +10,4 @@ const LandingPageHeader = ({ variant = 'light' }) => {
     </HorizontalHeader>
   );
 };
-
 export default LandingPageHeader;
