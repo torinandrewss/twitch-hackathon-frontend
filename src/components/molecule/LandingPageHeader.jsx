@@ -7,8 +7,6 @@ const LandingPageHeader = ({ variant = 'light' }) => {
     <HorizontalHeader>
       <ClickableText text="Home" variant={variant} href={'#home'} />
       <ClickableText text="About" variant={variant} href={'#about'} />
-      <ClickableText text="Experience" variant={variant} href={'#experience'} />
-      <ClickableText text="Contact" variant={variant} href={'#contact'} />
     </HorizontalHeader>
   );
 };
