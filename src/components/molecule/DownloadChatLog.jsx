@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getChat } from '../../api/twitchCalls';
+import dataParse from '../../utils/JSONhelpers';
 
 const DownloadChatLog = () => {
   const [videoId, setVideoId] = useState('');
@@ -48,7 +48,7 @@ const DownloadChatLog = () => {
         nextCursor = comments[comments.length - 1]?.cursor;
       } while (nextCursor);
 
-      console.log(allComments);
+      console.log(dataParse(allComments));
     } catch (err) {
       setError(err.message);
     } finally {
