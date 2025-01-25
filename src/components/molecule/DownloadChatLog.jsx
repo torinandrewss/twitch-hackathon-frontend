@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dataParse from '../../utils/JSONhelpers';
-import getChat from '../../api/twitchCalls';
+import { getChat } from '../../api/twitchCalls';
 
 const DownloadChatLog = () => {
   const [videoId, setVideoId] = useState('');
