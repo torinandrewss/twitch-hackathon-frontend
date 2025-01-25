@@ -26,9 +26,7 @@ const LandingTitle = () => {
       <TitleContainer>
         <Header>Twitch Hackathon</Header>
         <SubHeader>{displayedText}</SubHeader>
-        <ContentText>
-          Content Here
-        </ContentText>
+        <ContentText>Content Here</ContentText>
       </TitleContainer>
     </TitleCenterContainer>
   );
