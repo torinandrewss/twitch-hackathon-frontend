@@ -4,8 +4,8 @@ import { BackgroundContainer } from '../../molecule/BackgroundContainer.style';
 import HomeSection from './HomeSection';
 import styled from 'styled-components';
 
-const HomeLink = () => (
-  <div id="home">
+const LoadingLink = () => (
+  <div id="loading">
     <HomeSection />
   </div>
 );
@@ -16,7 +16,7 @@ const MainPage = () => {
     <BackgroundContainer>
       <SectionsContainer>
         <LandingPageHeader />
-        <HomeLink />
+        <LoadingLink />
       </SectionsContainer>
     </BackgroundContainer>
   );

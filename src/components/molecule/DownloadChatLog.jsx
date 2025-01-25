@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import dataParse from '../../utils/JSONhelpers';
 
 const TwitchApiClient = (clientId) => {
   const request = async (url, content) => {
@@ -71,7 +72,7 @@ const DownloadChatLog = () => {
         nextCursor = comments[comments.length - 1]?.cursor;
       } while (nextCursor);
 
-      console.log(allComments);
+      console.log(dataParse(allComments));
     } catch (err) {
       setError(err.message);
     } finally {
