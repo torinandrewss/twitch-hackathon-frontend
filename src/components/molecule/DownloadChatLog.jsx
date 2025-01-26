@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dataParse from '../../utils/JSONhelpers';
 import { getChat } from '../../api/twitchCalls';
+import analyzeSentiments from '../../utils/sentimentAnalysis';
 
 const DownloadChatLog = () => {
   const [videoId, setVideoId] = useState('');
@@ -48,8 +49,10 @@ const DownloadChatLog = () => {
         allComments = allComments.concat(comments.map((edge) => edge.node));
         nextCursor = comments[comments.length - 1]?.cursor;
       } while (nextCursor);
+      const parsedJson = dataParse(allComments);
+      const sentimentJson = analyzeSentiments(parsedJson);
 
-      console.log(dataParse(allComments));
+      console.log(sentimentJson);
     } catch (err) {
       setError(err.message);
     } finally {
