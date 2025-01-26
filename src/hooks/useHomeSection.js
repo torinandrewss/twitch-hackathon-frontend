@@ -9,6 +9,7 @@ const useHomeSection = () => {
   const [success, setSuccess] = useState(false);
   const [parsedJson, setParsedJson] = useState(null);
   const [url, setUrl] = useState('');
+  const [allComment, setAllComment] = useState(null);
 
   const downloadChatLog = useCallback(async (videoId) => {
     setLoading(true);
@@ -51,7 +52,7 @@ const useHomeSection = () => {
         allComments = allComments.concat(comments.map((edge) => edge.node));
         nextCursor = comments[comments.length - 1]?.cursor || null;
       } while (nextCursor);
-
+      setAllComment(allComments);
       const parsedData = dataParse(allComments, 10);
       const sentimentData = analyzeSentiments(parsedData);
 
@@ -64,7 +65,16 @@ const useHomeSection = () => {
     }
   }, []);
 
-  return { downloadChatLog, loading, error, success, parsedJson, url, setUrl };
+  return {
+    downloadChatLog,
+    loading,
+    error,
+    success,
+    parsedJson,
+    url,
+    setUrl,
+    allComment,
+  };
 };
 
 export default useHomeSection;

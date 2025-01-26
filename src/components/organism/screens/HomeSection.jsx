@@ -6,11 +6,12 @@ import useHomeSection from '../../../hooks/useHomeSection';
 import LoadingIndicator from '../../molecule/LoadingIndicator';
 import { extractVideoIdFromUrl } from '../../../utils/downloadChatLog';
 import ChatBarChart from '../ChatBarChart';
-import BarBar from '../../molecule/BarBar';
+import Timeline from '../../molecule/Timeline';
 
 // Landing Page Screen Component
 const HomeSection = () => {
-  const { downloadChatLog, loading, parsedJson, setUrl } = useHomeSection();
+  const { downloadChatLog, loading, parsedJson, setUrl, allComment } =
+    useHomeSection();
 
   const onSubmit = (url) => {
     setUrl(url);
@@ -21,14 +22,12 @@ const HomeSection = () => {
   return (
     <CenterContainer>
       <LandingTitle />
-
-      {/* Conditional Rendering Logic */}
       {loading ? (
         <LoadingIndicator />
       ) : parsedJson ? (
         <>
           <ChatBarChart chatData={parsedJson} />
-          <BarBar length={20} />
+          <Timeline commentResponse={allComment} />
         </>
       ) : (
         <VodForm onSubmit={onSubmit} />

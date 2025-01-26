@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import BarCell from '../atomic/BarCell';
 
-const BarBar = ({ startEndPoints, length = 5}) => {
+const BarBar = ({ startEndPoints, length = 5 }) => {
   return (
     <Container>
       {Array.from({ length }, (_, index) => (

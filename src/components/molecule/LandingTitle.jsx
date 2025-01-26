@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import HorizontalHeader from '../atomic/HorizontalHeader';
 import { TwitchLogo } from '../atomic/TwitchLogo';
-import twitchImg from '../../assets/raindrop.png'
+import twitchImg from '../../assets/raindrop.png';
 // import { Header, SubHeader as StyledSubHeader } from '../atomic/Headers.style';
 
 // Title content component for the landing page
@@ -54,7 +54,6 @@ const TitleContainer = styled.div`
   align-items: center;
 `;
 
-
 const Header = styled.h1`
   color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -74,7 +73,6 @@ const SubHeader = styled.h2`
   line-height: 1.5;
   margin: 0;
 `;
-
 
 // const SubHeader = styled(StyledSubHeader)`
 //   font-weight: bold;

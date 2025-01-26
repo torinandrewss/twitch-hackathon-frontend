@@ -18,20 +18,20 @@ const VodForm = ({ onSubmit }) => {
       <Title>Enter your twitch URL</Title>
       <form onSubmit={handleSubmit}>
         <ButtonContainer>
-        <InputField
-          type="url"
-          placeholder="https://www.twitch.tv/videos/12345"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
-        <Button
-          text="Submit"
-          variant="fill"
-          type="submit"
-          disabled={!url.trim()}
-        />
-      </ButtonContainer>
+          <InputField
+            type="url"
+            placeholder="https://www.twitch.tv/videos/12345"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
+          <Button
+            text="Submit"
+            variant="fill"
+            type="submit"
+            disabled={!url.trim()}
+          />
+        </ButtonContainer>
       </form>
     </Container>
   );
@@ -64,7 +64,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
-  color: ${({ theme }) => theme.colors.white};;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 const InputField = styled.input`

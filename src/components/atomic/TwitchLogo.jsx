@@ -8,7 +8,6 @@ export const TwitchLogo = styled.img`
   transition: transform 0.3s ease;
   margin-bottom: 2.5rem;
 
-
   &:hover {
     transform: scale(1.1);
   }

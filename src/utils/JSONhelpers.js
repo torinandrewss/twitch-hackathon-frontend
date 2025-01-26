@@ -27,8 +27,8 @@ export const dataParse = (data, time_window) => {
   }
 
   return {
-    map, // Grouped messages by time window
-    freqMap, // Frequency of messages in each time window
+    map,
+    freqMap,
   };
 };
 
@@ -52,11 +52,21 @@ export const parseSentimentWithData = (data) => {
   const newMap = {};
 
   for (const [key, value] of Object.entries(map)) {
-    var compoundSum = 1;
+    let compoundSum = 0;
+    let validEntries = 0;
     for (let i = 0; i < value.length; i++) {
-      compoundSum += Math.abs(value[i]['sentiment']['compound']) + 1;
+      const sentiment = value[i]?.sentiment;
+      if (sentiment && typeof sentiment.compound === 'number') {
+        compoundSum += Math.abs(sentiment.compound) + 1;
+        validEntries++;
+      }
     }
-    newMap[key] = (freqMap[key] * compoundSum) / value.length;
+
+    if (validEntries > 0) {
+      newMap[key] = (freqMap[key] * compoundSum) / validEntries;
+    } else {
+      newMap[key] = 0;
+    }
   }
 
   return {
@@ -68,9 +78,7 @@ export const getTopXPoints = (data, num, buffer, time_window) => {
   let entries = Object.entries(data.newMap);
 
   entries.sort((a, b) => b[1] - a[1]);
-  console.log(entries);
   const topXValues = entries.slice(0, num);
-  console.log(topXValues);
   const startAndEndPoints = [];
 
   for (const [key, value] of topXValues) {
