@@ -35,7 +35,6 @@ const HomeSection = () => {
 
 export default HomeSection;
 
-// Styled Components
 const CenterContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -43,6 +42,7 @@ const CenterContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
+  min-width: 600px;
   height: 100vh;
   position: relative;
 `;

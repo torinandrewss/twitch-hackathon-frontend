@@ -1,12 +1,19 @@
 /**
- * Helper function to get a color based on sentiment value
- * @param {number} sentiment - The compound sentiment value (-1 to 1)
- * @returns {string} - A color from red (negative) to green (positive)
+ * Generate a color for sentiment, dynamically scaling between min and max sentiment values.
+ * @param {number} sentiment - The sentiment value for the current data point.
+ * @param {number} minSentiment - The minimum sentiment value in the dataset.
+ * @param {number} maxSentiment - The maximum sentiment value in the dataset.
+ * @returns {string} - The RGB color string (red to green).
  */
-export const getColorForSentiment = (sentiment) => {
-  const red = Math.max(255 * (1 - sentiment), 0); // More red for negative
-  const green = Math.max(255 * (1 + sentiment), 0); // More green for positive
-  return `rgb(${Math.floor(red)}, ${Math.floor(green)}, 0)`;
+export const getColorForSentiment = (sentiment, minSentiment, maxSentiment) => {
+  // Normalize the sentiment value to a 0-1 range based on the min and max
+  const normalizedSentiment =
+    (sentiment - minSentiment) / (maxSentiment - minSentiment);
+
+  const red = Math.floor(255 * (1 - normalizedSentiment)); // Full red for minSentiment
+  const green = Math.floor(255 * normalizedSentiment); // Full green for maxSentiment
+
+  return `rgb(${red}, ${green}, 0)`; // Pure red to pure green gradient
 };
 
 /**
@@ -17,7 +24,7 @@ export const getColorForSentiment = (sentiment) => {
 export const processChartData = (data) => {
   const { map, freqMap } = data;
   const keys = Object.keys(freqMap).map(Number); // Get all time interval keys as numbers
-  const totalIntervals = 20;
+  const totalIntervals = 40;
   const maxKey = Math.max(...keys); // Max time offset key
   const intervalSize = Math.ceil(maxKey / totalIntervals);
 
