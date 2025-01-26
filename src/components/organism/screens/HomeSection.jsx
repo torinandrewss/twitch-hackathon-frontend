@@ -10,7 +10,7 @@ import BarBar from '../../molecule/BarBar';
 
 // Landing Page Screen Component
 const HomeSection = () => {
-  const { downloadChatLog, loading, parsedJson, setUrl } = useHomeSection();
+  const { downloadChatLog, loading, parsedJson, unparsedJson, setUrl } = useHomeSection();
 
   const onSubmit = (url) => {
     setUrl(url);
@@ -28,7 +28,7 @@ const HomeSection = () => {
       ) : parsedJson ? (
         <>
           <ChatBarChart chatData={parsedJson} />
-          <BarBar length={20} />
+          <BarBar data={unparsedJson} />
         </>
       ) : (
         <VodForm onSubmit={onSubmit} />
