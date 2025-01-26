@@ -1,5 +1,4 @@
 import React from 'react';
-import LandingPageHeader from '../../molecule/LandingPageHeader';
 import { BackgroundContainer } from '../../molecule/BackgroundContainer.style';
 import HomeSection from './HomeSection';
 import styled from 'styled-components';
@@ -15,7 +14,6 @@ const MainPage = () => {
   return (
     <BackgroundContainer>
       <SectionsContainer>
-        <LandingPageHeader />
         <LoadingLink />
       </SectionsContainer>
     </BackgroundContainer>

@@ -32,6 +32,8 @@ const LandingTitle = () => {
   );
 };
 
+export default LandingTitle;
+
 const TitleCenterContainer = styled.div`
   margin-top: 7rem;
   display: flex;
@@ -56,5 +58,3 @@ const ContentText = styled.h4`
   margin: 0;
   text-align: center;
 `;
-
-export default LandingTitle;

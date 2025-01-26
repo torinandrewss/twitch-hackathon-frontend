@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import LandingTitle from '../../molecule/LandingTitle';
-import DownloadChatLog from '../../molecule/DownloadChatLog';
+import VodForm from '../../molecule/VodForm';
 
 // Landing Page Screen Component
 const HomeSection = () => {
   return (
     <CenterContainer>
       <LandingTitle />
-      <DownloadChatLog />
+      <VodForm></VodForm>
     </CenterContainer>
   );
 };
