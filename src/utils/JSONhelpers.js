@@ -1,8 +1,10 @@
-const dataParse = (data) => {
+import { analyzeSentiments } from './sentimentAnalysis';
+
+export const dataParse = (data) => {
   const finalArr = [];
   let map = {};
   let freqMap = {};
-  const window = 10; // seconds
+  const window = 1; // seconds
 
   for (let i = 0; i < data.length; i++) {
     const timeOffset = data[i].contentOffsetSeconds;
@@ -10,12 +12,13 @@ const dataParse = (data) => {
     const key = Math.floor(timeOffset / window);
     const dataPoint = { timeOffset, messageContent };
 
+    // Generate lst mapping
     if (key in map) {
       map[key].push(dataPoint);
     } else {
       map[key] = [dataPoint];
     }
-
+    // Generate frequency mapping
     if (key in freqMap) {
       freqMap[key] += 1;
     } else {
@@ -31,4 +34,20 @@ const dataParse = (data) => {
   };
 };
 
-export default dataParse;
+export const parseSentimentWithData = (data) => {
+  const map = data.map;
+  const freqMap = data.freqMap;
+  const newMap = {};
+
+  for (const [key, value] of Object.entries(map)) {
+    var compoundSum = 1;
+    for (let i = 0; i < value.length; i++) {
+      compoundSum += Math.abs(value[i]['sentiment']['compound']) + 1;
+    }
+    newMap[key] = freqMap[key] * compoundSum;
+  }
+
+  return {
+    newMap,
+  };
+};
