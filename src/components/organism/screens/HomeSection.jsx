@@ -7,6 +7,7 @@ import LoadingIndicator from '../../molecule/LoadingIndicator';
 import { extractVideoIdFromUrl } from '../../../utils/downloadChatLog';
 import ChatBarChart from '../ChatBarChart';
 import Timeline from '../../molecule/Timeline';
+import AnalysisTitle from '../../molecule/AnalysisTitle';
 
 // Landing Page Screen Component
 const HomeSection = () => {
@@ -21,16 +22,19 @@ const HomeSection = () => {
 
   return (
     <CenterContainer>
-      <LandingTitle />
       {loading ? (
         <LoadingIndicator />
       ) : parsedJson ? (
         <>
+          <AnalysisTitle />
           <ChatBarChart chatData={parsedJson} />
           <Timeline commentResponse={allComment} url={url} />
         </>
       ) : (
-        <VodForm onSubmit={onSubmit} />
+        <>
+          <LandingTitle />
+          <VodForm onSubmit={onSubmit} />
+        </>
       )}
     </CenterContainer>
   );

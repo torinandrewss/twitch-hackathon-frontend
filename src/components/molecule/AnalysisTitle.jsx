@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { TwitchLogo } from '../atomic/TwitchLogo';
 import twitchImg from '../../assets/raindrop.png';
-// import { Header, SubHeader as StyledSubHeader } from '../atomic/Headers.style';
 
 // Title content component for the landing page
-const LandingTitle = () => {
+const AnalysisTitle = () => {
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Know your best moments';
 
@@ -27,7 +26,6 @@ const LandingTitle = () => {
     <TitleCenterContainer>
       <TitleContainer>
         <TwitchLogo src={twitchImg} alt="Twitch Logo" />
-        <Header>Stitch</Header>
         <SubHeader>{displayedText}</SubHeader>
         <ContentText>Your Twitch stream analytics done right</ContentText>
       </TitleContainer>
@@ -35,7 +33,7 @@ const LandingTitle = () => {
   );
 };
 
-export default LandingTitle;
+export default AnalysisTitle;
 
 const TitleCenterContainer = styled.div`
   display: flex;
