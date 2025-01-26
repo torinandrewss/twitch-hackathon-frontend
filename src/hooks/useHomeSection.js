@@ -8,6 +8,7 @@ const useHomeSection = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [parsedJson, setParsedJson] = useState(null);
+  const [unparsedJson, setUnparsedJson] = useState(null);
   const [url, setUrl] = useState('');
   const [allComment, setAllComment] = useState(null);
 
@@ -57,6 +58,7 @@ const useHomeSection = () => {
       const sentimentData = analyzeSentiments(parsedData);
 
       setParsedJson(sentimentData);
+      setUnparsedJson(dataParse(allComments, 1));
       setSuccess(true);
     } catch (err) {
       setError(err.message || 'An error occurred while fetching the chat log.');
