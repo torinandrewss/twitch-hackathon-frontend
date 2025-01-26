@@ -18,9 +18,9 @@ const LandingTitle = () => {
       } else {
         clearInterval(timer);
       }
-    }, 100); // Adjust typing speed (milliseconds per character)
+    }, 100);
 
-    return () => clearInterval(timer); // Cleanup interval on component unmount
+    return () => clearInterval(timer);
   }, []);
 
   return (

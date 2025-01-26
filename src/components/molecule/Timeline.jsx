@@ -11,26 +11,25 @@ import {
  * Timeline Component
  * @param {Object} props
  * @param {Array} props.blocks - An array of objects, each containing start and end times for the blocks.
- * Example: [{ start: 10, end: 30 }, { start: 50, end: 70 }]
  */
 const Timeline = ({ commentResponse, url }) => {
   const parsedData = dataParse(commentResponse, 1);
 
   const { freqMap } = parsedData;
-  const keys = Object.keys(freqMap).map(Number); // Get all time interval keys as numbers
-  const maxKey = Math.max(...keys); // Max time offset key
+  const keys = Object.keys(freqMap).map(Number);
+  const maxKey = Math.max(...keys);
 
   const parsedSentiment = parseSentimentWithData(parsedData);
   const top10Points = getTopXPoints(parsedSentiment, 10, 1, 60);
 
-  const calculatePosition = (time) => (time / maxKey) * 100; // Calculate the percentage width for each block relative to the timeline
+  const calculatePosition = (time) => (time / maxKey) * 100;
 
   return (
     <TimelineContainer>
       <Line>
         {top10Points.map((block, index) => {
           const left = calculatePosition(block.start);
-          const width = calculatePosition(block.end) - left; // Correct width calculation
+          const width = calculatePosition(block.end) - left;
 
           const generatedURL = generateTimeURL(url, block.start);
 
@@ -68,7 +67,7 @@ const TimelineContainer = styled.div`
 const Line = styled.div`
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 1.5rem;
   background-color: #e0e0e0;
   border-radius: 5px;
   overflow: hidden;

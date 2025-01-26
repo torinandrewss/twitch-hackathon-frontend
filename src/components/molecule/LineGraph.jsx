@@ -10,7 +10,6 @@ import {
   Legend,
 } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,11 +20,9 @@ ChartJS.register(
 );
 
 const LineGraph = ({ freqMap }) => {
-  // Extract labels and data from freqMap
   const labels = Object.keys(freqMap).map((key) => `Bin ${key}`);
   const data = Object.values(freqMap);
 
-  // Chart.js data configuration
   const chartData = {
     labels, // X-axis labels
     datasets: [
