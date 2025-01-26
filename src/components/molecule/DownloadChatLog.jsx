@@ -67,7 +67,12 @@ const DownloadChatLog = () => {
 
       console.log('F(x_i): ', anomalyData);
 
-      const startEndPoints = getTopXPoints(anomalyData, 10, buffer, time_window);
+      const startEndPoints = getTopXPoints(
+        anomalyData,
+        10,
+        buffer,
+        time_window
+      );
       console.log('Top Points : ', startEndPoints);
 
       setJson(anomalyData);

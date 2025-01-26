@@ -24,7 +24,9 @@ ChartJS.register(
 
 const BarChart = ({ freqMap, time_window }) => {
   // Extract labels and data from freqMap
-  const labels = Object.keys(freqMap).map((key) => `Time (s) ${key * time_window}`);
+  const labels = Object.keys(freqMap).map(
+    (key) => `Time (s) ${key * time_window}`
+  );
   const data = Object.values(freqMap);
 
   // Chart.js data configuration

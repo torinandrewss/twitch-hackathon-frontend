@@ -52,7 +52,7 @@ const useHomeSection = () => {
         nextCursor = comments[comments.length - 1]?.cursor || null;
       } while (nextCursor);
 
-      const parsedData = dataParse(allComments);
+      const parsedData = dataParse(allComments, 10);
       const sentimentData = analyzeSentiments(parsedData);
 
       setParsedJson(sentimentData);
