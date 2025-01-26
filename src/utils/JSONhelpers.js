@@ -34,6 +34,20 @@ export const dataParse = (data, time_window) => {
   };
 };
 
+export const generateTimeURL = (url, time_start) => {
+  const hours = Math.floor(time_start / 3600);
+  const minutes = Math.floor((time_start % 3600) / 60);
+  const seconds = time_start % 60;
+
+  const formattedHours = hours < 10 ? `0${hours}` : hours;
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  const timeString = `${formattedHours}h${formattedMinutes}m${formattedSeconds}s`;
+
+  return `${url}?t=${timeString}`;
+};
+
 export const parseSentimentWithData = (data) => {
   const map = data.map;
   const freqMap = data.freqMap;
