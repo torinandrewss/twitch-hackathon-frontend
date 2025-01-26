@@ -10,7 +10,7 @@ import Timeline from '../../molecule/Timeline';
 
 // Landing Page Screen Component
 const HomeSection = () => {
-  const { downloadChatLog, loading, parsedJson, setUrl, allComment } =
+  const { downloadChatLog, loading, parsedJson, setUrl, allComment, url } =
     useHomeSection();
 
   const onSubmit = (url) => {
@@ -27,7 +27,7 @@ const HomeSection = () => {
       ) : parsedJson ? (
         <>
           <ChatBarChart chatData={parsedJson} />
-          <Timeline commentResponse={allComment} />
+          <Timeline commentResponse={allComment} url={url} />
         </>
       ) : (
         <VodForm onSubmit={onSubmit} />

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import BarCell from '../atomic/BarCell';
 import { getTopXPoints, parseSentimentWithData } from '../../utils/JSONhelpers';
 
-const BarBar = ({ data, length = 20}) => {
-    // data == dataParse(data,  time_window = 1)
+const BarBar = ({ data, length = 20 }) => {
+  // data == dataParse(data,  time_window = 1)
   const [startEndPoints, setPoints] = useState(null);
   const [sentimateData, setSentimate] = useState(null);
   const [finalURL, setURL] = useState('');

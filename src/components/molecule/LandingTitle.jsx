@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import HorizontalHeader from '../atomic/HorizontalHeader';
 import { TwitchLogo } from '../atomic/TwitchLogo';
 import twitchImg from '../../assets/raindrop.png';
 // import { Header, SubHeader as StyledSubHeader } from '../atomic/Headers.style';

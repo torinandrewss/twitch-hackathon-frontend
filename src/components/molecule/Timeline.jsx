@@ -4,6 +4,7 @@ import {
   dataParse,
   parseSentimentWithData,
   getTopXPoints,
+  generateTimeURL,
 } from '../../utils/JSONhelpers';
 
 /**
@@ -12,39 +13,35 @@ import {
  * @param {Array} props.blocks - An array of objects, each containing start and end times for the blocks.
  * Example: [{ start: 10, end: 30 }, { start: 50, end: 70 }]
  */
-const Timeline = ({ commentResponse }) => {
+const Timeline = ({ commentResponse, url }) => {
   const parsedData = dataParse(commentResponse, 1);
 
   const { freqMap } = parsedData;
-  console.log('Comment Response', commentResponse);
   const keys = Object.keys(freqMap).map(Number); // Get all time interval keys as numbers
   const maxKey = Math.max(...keys); // Max time offset key
 
-  console.log(parsedData);
   const parsedSentiment = parseSentimentWithData(parsedData);
   const top10Points = getTopXPoints(parsedSentiment, 10, 1, 60);
-  console.log('Top Poiints: ', top10Points);
 
-  // Calculate the percentage width for each block relative to the timeline
-  const calculatePosition = (time) => (time / maxKey) * 100;
+  const calculatePosition = (time) => (time / maxKey) * 100; // Calculate the percentage width for each block relative to the timeline
 
   return (
     <TimelineContainer>
       <Line>
         {top10Points.map((block, index) => {
-          // Calculate the left and width as percentages based on the start and end times
           const left = calculatePosition(block.start);
           const width = calculatePosition(block.end) - left; // Correct width calculation
 
-          console.log(width);
+          const generatedURL = generateTimeURL(url, block.start);
 
           return (
             <Block
               key={index}
               style={{
                 left: `${left}%`,
-                width: `${width*30}%`,
+                width: `${width * 30}%`,
               }}
+              onClick={() => window.open(generatedURL, '_blank')}
             />
           );
         })}
@@ -83,6 +80,7 @@ const Block = styled.div`
   background-color: #4caf50;
   border-radius: 5px;
   transition: all 0.3s ease;
+  cursor: pointer;
   &:hover {
     background-color: #388e3c;
   }

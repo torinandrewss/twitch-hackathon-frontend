@@ -95,15 +95,15 @@ const ChatBarChart = ({ chatData }) => {
         title: {
           display: true,
           text: 'Number of Messages',
-          font: { size: 16, weight: 'bold', family: 'Arial' }, // Styled axis title
+          font: { size: 16, weight: 'bold', family: 'Arial' },
           color: 'rgb(0, 0, 0)',
         },
         ticks: {
-          font: { size: 12, family: 'Arial' }, // Styled tick labels
+          font: { size: 12, family: 'Arial' },
         },
         grid: {
-          color: 'rgba(0, 0, 0, 0.1)', // Light grid lines for y-axis
-          borderDash: [5, 5], // Dashed lines for visual distinction
+          color: 'rgba(0, 0, 0, 0.1)',
+          borderDash: [5, 5],
         },
         beginAtZero: true,
       },
