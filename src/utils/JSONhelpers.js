@@ -1,10 +1,10 @@
 import { analyzeSentiments } from './sentimentAnalysis';
 
-export const dataParse = (data) => {
+export const dataParse = (data, time_window) => {
   const finalArr = [];
   let map = {};
   let freqMap = {};
-  const window = 1; // seconds
+  const window = time_window; // seconds
 
   for (let i = 0; i < data.length; i++) {
     const timeOffset = data[i].contentOffsetSeconds;
@@ -44,10 +44,30 @@ export const parseSentimentWithData = (data) => {
     for (let i = 0; i < value.length; i++) {
       compoundSum += Math.abs(value[i]['sentiment']['compound']) + 1;
     }
-    newMap[key] = freqMap[key] * compoundSum;
+    newMap[key] = (freqMap[key] * compoundSum) / value.length;
   }
 
   return {
     newMap,
   };
+};
+
+export const getTopXPoints = (data, num, buffer, time_window) => {
+  let entries = Object.entries(data.newMap);
+
+  entries.sort((a, b) => b[1] - a[1]);
+  console.log(entries);
+  const topXValues = entries.slice(0, num);
+  console.log(topXValues);
+  const startAndEndPoints = [];
+
+  for (const [key, value] of topXValues) {
+    // Key is the time stamp value
+    startAndEndPoints.push({
+      start: Number(key) * time_window - buffer,
+      end: Number(key) * time_window + buffer,
+    });
+  }
+
+  return startAndEndPoints;
 };
