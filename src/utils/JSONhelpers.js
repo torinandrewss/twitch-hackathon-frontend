@@ -2,7 +2,7 @@ const dataParse = (data) => {
   const finalArr = [];
   let map = {};
   let freqMap = {};
-  const window = 10; // seconds
+  const window = 40; // seconds
 
   for (let i = 0; i < data.length; i++) {
     const timeOffset = data[i].contentOffsetSeconds;

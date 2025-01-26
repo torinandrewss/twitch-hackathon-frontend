@@ -9,7 +9,6 @@ const LoadingLink = () => (
     <HomeSection />
   </div>
 );
-
 // Ladning Page Screen Component
 const MainPage = () => {
   return (

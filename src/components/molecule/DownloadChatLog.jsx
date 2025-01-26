@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import dataParse from '../../utils/JSONhelpers';
 import { getChat } from '../../api/twitchCalls';
 import analyzeSentiments from '../../utils/sentimentAnalysis';
-
+import FreqMapGraph from './BarGraph';
 const DownloadChatLog = () => {
   const [videoId, setVideoId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [parsedJson, setJson] = useState(null);
 
   const downloadChatLog = async () => {
     setLoading(true);
@@ -49,7 +51,9 @@ const DownloadChatLog = () => {
         allComments = allComments.concat(comments.map((edge) => edge.node));
         nextCursor = comments[comments.length - 1]?.cursor;
       } while (nextCursor);
-      const parsedJson = dataParse(allComments);
+      const parsedJson = dataParse(allComments).freqMap;
+      setJson(parsedJson);
+      setSuccess(true);
       const sentimentJson = analyzeSentiments(parsedJson);
 
       console.log(sentimentJson);
@@ -80,7 +84,8 @@ const DownloadChatLog = () => {
         </button>
       </div>
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      {success && <FreqMapGraph freqMap={parsedJson} />}
+      {error && <p style={{ color: 'red' }}>Error: {error.stringify}</p>}
     </div>
   );
 };
