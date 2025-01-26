@@ -6,6 +6,7 @@ import useHomeSection from '../../../hooks/useHomeSection';
 import LoadingIndicator from '../../molecule/LoadingIndicator';
 import { extractVideoIdFromUrl } from '../../../utils/downloadChatLog';
 import ChatBarChart from '../ChatBarChart';
+import BarBar from '../../molecule/BarBar';
 
 // Landing Page Screen Component
 const HomeSection = () => {
@@ -25,7 +26,10 @@ const HomeSection = () => {
       {loading ? (
         <LoadingIndicator />
       ) : parsedJson ? (
-        <ChatBarChart chatData={parsedJson} />
+        <>
+          <ChatBarChart chatData={parsedJson} />
+          <BarBar length={20} />
+        </>
       ) : (
         <VodForm onSubmit={onSubmit} />
       )}
@@ -45,4 +49,5 @@ const CenterContainer = styled.div`
   min-width: 600px;
   height: 100vh;
   position: relative;
+  padding-bottom: 3rem;
 `;
