@@ -31,19 +31,27 @@ const Timeline = ({ commentResponse }) => {
   return (
     <TimelineContainer>
       <Line>
-        {top10Points.map((block, index) => (
-          <Block
-            key={index}
-            style={{
-              left: `${calculatePosition(block.start)}%`,
-              width: `${calculatePosition(block.end) - calculatePosition(block.start)}%`,
-            }}
-          />
-        ))}
+        {top10Points.map((block, index) => {
+          // Calculate the left and width as percentages based on the start and end times
+          const left = calculatePosition(block.start);
+          const width = calculatePosition(block.end) - left; // Correct width calculation
+
+          console.log(width);
+
+          return (
+            <Block
+              key={index}
+              style={{
+                left: `${left}%`,
+                width: `${width*30}%`,
+              }}
+            />
+          );
+        })}
       </Line>
       <Labels>
         <Label>0s</Label>
-        <Label>{maxKey}s</Label>
+        <Label>{Math.floor(maxKey / 60)}m</Label>
       </Labels>
     </TimelineContainer>
   );
