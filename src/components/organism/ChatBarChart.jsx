@@ -124,7 +124,7 @@ const ChatBarChart = ({ chatData }) => {
         width: '100%',
         maxWidth: '1000px',
         margin: '0 auto',
-        background: '#f8f9fa', // Subtle background for chart container
+        background: 'rgba(255, 255, 255, 0.60)', // Subtle background for chart container
         borderRadius: '12px',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add a shadow for a card-like appearance
       }}
