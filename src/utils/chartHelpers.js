@@ -21,9 +21,10 @@ export const processChartData = (data) => {
   const maxKey = Math.max(...keys); // Max time offset key
   const intervalSize = Math.ceil(maxKey / totalIntervals);
 
+  // Initialize intervals
   const intervals = Array.from({ length: totalIntervals }, (_, i) => ({
     start: i * intervalSize,
-    end: (i + 1) * intervalSize,
+    end: Math.min((i + 1) * intervalSize, maxKey + 1), // Ensure last interval ends at maxKey
     totalMessages: 0,
     totalSentiment: 0,
     averageSentiment: 0,
@@ -32,8 +33,8 @@ export const processChartData = (data) => {
   // Calculate total messages and sentiment for each interval
   keys.forEach((key) => {
     const matchingIntervalIndex = Math.min(
-      Math.floor((key - 1) / intervalSize),
-      totalIntervals - 1
+      Math.floor(key / intervalSize),
+      totalIntervals - 1 // Ensure index is within bounds
     );
 
     const messages = map[key] || [];
@@ -43,8 +44,11 @@ export const processChartData = (data) => {
       0
     );
 
-    intervals[matchingIntervalIndex].totalMessages += totalMessagesInKey;
-    intervals[matchingIntervalIndex].totalSentiment += totalCompoundSentiment;
+    // Safely update the interval
+    if (intervals[matchingIntervalIndex]) {
+      intervals[matchingIntervalIndex].totalMessages += totalMessagesInKey;
+      intervals[matchingIntervalIndex].totalSentiment += totalCompoundSentiment;
+    }
   });
 
   // Compute average sentiment for each interval

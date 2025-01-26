@@ -1,5 +1,3 @@
-import { analyzeSentiments } from './sentimentAnalysis';
-
 export const dataParse = (data, time_window) => {
   const finalArr = [];
   let map = {};
