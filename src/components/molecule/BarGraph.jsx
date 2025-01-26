@@ -22,9 +22,9 @@ ChartJS.register(
   Legend
 );
 
-const BarChart = ({ freqMap }) => {
+const BarChart = ({ freqMap, time_window }) => {
   // Extract labels and data from freqMap
-  const labels = Object.keys(freqMap).map((key) => `Bin ${key}`);
+  const labels = Object.keys(freqMap).map((key) => `Time (s) ${key * time_window}`);
   const data = Object.values(freqMap);
 
   // Chart.js data configuration
@@ -32,7 +32,7 @@ const BarChart = ({ freqMap }) => {
     labels, // X-axis labels
     datasets: [
       {
-        label: 'Message Frequency',
+        label: 'Engagement Score',
         data,
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
@@ -49,7 +49,7 @@ const BarChart = ({ freqMap }) => {
       },
       title: {
         display: true,
-        text: 'Message Frequency per Time Bin',
+        text: 'Engagement Score per Time Window',
       },
     },
     scales: {
@@ -57,7 +57,7 @@ const BarChart = ({ freqMap }) => {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Frequency',
+          text: 'Engagement Score',
         },
       },
       x: {
