@@ -28,7 +28,7 @@ const LandingTitle = () => {
     <TitleCenterContainer>
       <TitleContainer>
         <TwitchLogo src={twitchImg} alt="Twitch Logo" />
-        <Header>Twitch Wrapped</Header>
+        <Header>Stitch</Header>
         <SubHeader>{displayedText}</SubHeader>
         <ContentText>Your Twitch stream analytics done right</ContentText>
       </TitleContainer>
