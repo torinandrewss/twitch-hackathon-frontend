@@ -1,11 +1,10 @@
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -15,14 +14,13 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
-const BarChart = ({ freqMap }) => {
+const LineGraph = ({ freqMap }) => {
   // Extract labels and data from freqMap
   const labels = Object.keys(freqMap).map((key) => `Bin ${key}`);
   const data = Object.values(freqMap);
@@ -70,17 +68,10 @@ const BarChart = ({ freqMap }) => {
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        margin: '0 auto',
-        backgroundColor: 'white',
-        borderRadius: '30px',
-      }}
-    >
+    <div style={{ width: '80%', margin: '0 auto' }}>
       <Line data={chartData} options={options} />
     </div>
   );
 };
 
-export default BarChart;
+export default LineGraph;
