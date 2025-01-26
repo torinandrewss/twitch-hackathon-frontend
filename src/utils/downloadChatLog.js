@@ -1,6 +1,5 @@
 import { getChat } from '../api/twitchCalls';
 
-// TODO: Add the hash as env var?
 export const downloadChatLog = async (videoId) => {
   const baseQuery = JSON.stringify([
     {
@@ -40,4 +39,12 @@ export const downloadChatLog = async (videoId) => {
   } while (nextCursor);
 
   return allComments;
+};
+
+/**
+ * Helper function to extract video ID from a Twitch URL
+ */
+export const extractVideoIdFromUrl = (url) => {
+  const match = url.match(/videos\/(\d+)/); // Matches "videos/<id>"
+  return match ? match[1] : null; // Return the captured ID or null if not found
 };

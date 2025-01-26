@@ -2,19 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 import LandingTitle from '../../molecule/LandingTitle';
 import VodForm from '../../molecule/VodForm';
+import useHomeSection from '../../../hooks/useHomeSection';
+import LoadingIndicator from '../../molecule/LoadingIndicator';
+import { extractVideoIdFromUrl } from '../../../utils/downloadChatLog';
+import ChatBarChart from '../ChatBarChart';
 
 // Landing Page Screen Component
 const HomeSection = () => {
+  const { downloadChatLog, loading, parsedJson, setUrl } = useHomeSection();
+
+  const onSubmit = (url) => {
+    setUrl(url);
+    const videoId = extractVideoIdFromUrl(url);
+    downloadChatLog(videoId);
+  };
+
   return (
     <CenterContainer>
       <LandingTitle />
-      <VodForm></VodForm>
+
+      {/* Conditional Rendering Logic */}
+      {loading ? (
+        <LoadingIndicator />
+      ) : parsedJson ? (
+        <ChatBarChart chatData={parsedJson} />
+      ) : (
+        <VodForm onSubmit={onSubmit} />
+      )}
     </CenterContainer>
   );
 };
 
 export default HomeSection;
 
+// Styled Components
 const CenterContainer = styled.div`
   display: flex;
   justify-content: center;
