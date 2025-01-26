@@ -26,7 +26,7 @@ const Timeline = ({ commentResponse, url }) => {
   const calculatePosition = (time) => (time / maxKey) * 100; // Calculate the percentage width for each block relative to the timeline
 
   return (
-    <TimelineContainer>
+    <><Text > Click below to select a region </Text><TimelineContainer>
       <Line>
         {top10Points.map((block, index) => {
           const left = calculatePosition(block.start);
@@ -41,8 +41,7 @@ const Timeline = ({ commentResponse, url }) => {
                 left: `${left}%`,
                 width: `${width * 30}%`,
               }}
-              onClick={() => window.open(generatedURL, '_blank')}
-            />
+              onClick={() => window.open(generatedURL, '_blank')} />
           );
         })}
       </Line>
@@ -50,12 +49,21 @@ const Timeline = ({ commentResponse, url }) => {
         <Label>0s</Label>
         <Label>{Math.floor(maxKey / 60)}m</Label>
       </Labels>
-    </TimelineContainer>
+    </TimelineContainer></>
   );
 };
 
 export default Timeline;
 
+
+const Text = styled.div`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-weight: bold;
+  display: flex;
+  margin-top: 20px;
+  justify-content: left;
+  color: aliceblue;
+`;
 const TimelineContainer = styled.div`
   display: flex;
   flex-direction: column;
